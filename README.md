@@ -67,4 +67,3 @@ This API verifies the input verification token and if expires informs returns th
 
 This APIS sends verification code to your user mailId with expiration time of token of 5min.
 
-In the project directory, you can run:
