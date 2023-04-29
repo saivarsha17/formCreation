@@ -37,9 +37,9 @@ This creates database new_test
 
 Go to user.sql table and copy paste the table in MySql CLI . This will create table named user.
 
-## cd signinserver
+## cd signinserver &&  npm i
 
-## npm i
+
 
 Installs all dependencies
 
