@@ -28,13 +28,13 @@ app.post('/register', (req, res) => {
     [email, mobileNumber],
     (err, results, fields) => {
       if (err) {
-        console.log('ERRRRR>>>>>>>', err.message);
+       
         throw err;
       }
       checkUserResult = results[0].COUNT;
 
       if (checkUserResult === 0) {
-        console.log('nnnnnnn', checkUserResult, checkUserResult === 0, 1 === 0);
+       
         const insert_data = `INSERT INTO user (firstName, lastName, email, code, mobileNumber, password)
       VALUES (?,?,?,?,?,?)`;
         connection.query(
@@ -42,15 +42,15 @@ app.post('/register', (req, res) => {
           [firstName, lastName, email, code, mobileNumber, password],
           (err, results, fields) => {
             if (err) {
-              console.log('ERRRRR>>>>>>>', err.message);
+              
               throw err;
             }
-            console.log(results);
+           
             res.send({ message: 'user registerd succesfully', done: true });
           }
         );
       } else {
-        console.log('ENTERIGN NOW');
+      
 
         res.send({ message: 'user already exists', done: false });
       }
@@ -114,7 +114,7 @@ app.post('/sendcode', (req, res) => {
   });
   const randomSixDigitNumber = Math.floor(100000 + Math.random() * 900000);
 
-  console.log(randomSixDigitNumber);
+  
   let mailOptions = {
     from: 'saivarshatedla@gmail.com',
     to: email,
@@ -158,7 +158,7 @@ app.post('/verify', (req, res) => {
     check_code_validation,
     [code, email],
     (error, results, fields) => {
-      console.log('results', results);
+    
       if (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while verifying.' });
@@ -171,13 +171,7 @@ app.post('/verify', (req, res) => {
         const diffInMs = today_date - date2;
 
         const diffInMin = Math.abs(diffInMs / (1000 * 60));
-        console.log(
-          'diffin min',
-          today_date,
-          date2,
-          diffInMin,
-          results[0].verificationdate
-        );
+        
 
         if (diffInMin > 5) {
           res.send({ message: 'Code Expires', done: false });
