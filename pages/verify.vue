@@ -20,13 +20,6 @@
 
 <script>
 export default {
-  asyncData({ route }) {
-    console.log(route.params, "params"); // Access route parameters
-    console.log(route.query, "query"); // Access query parameters
-    console.log(route.path); // Access current route path
-    console.log(route.name); // Access current route name
-    console.log(route.fullPath); // Access current full route path
-  },
   data() {
     return {
       code: "",
@@ -96,7 +89,6 @@ export default {
             if (data.done === true) {
               this.$router.push("/details");
             } else {
-              console.log("code length", this.code.length);
               this.inValidcodeModal = true;
               this.invalidcode = data.message;
               setTimeout(() => {

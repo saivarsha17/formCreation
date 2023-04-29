@@ -96,12 +96,11 @@ export default {
       this.hidePassword = "*".repeat(this.password.length);
     },
     handleButtonClick() {
-      console.log("enter");
       const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      const phoneRegex = /^\d{10,}$/;
+      const phoneRegex = /^\d{1,}$/;
       const isEmail = emailRegex.test(this.userNameOrEmail);
       const isPhone = phoneRegex.test(this.userNameOrEmail);
-      console.log("enter ext", isPhone, isEmail);
+      console.log("check is phone", isPhone);
 
       if (this.userNameOrEmail.length === 0) {
         this.inValidEmailId = true;
@@ -110,7 +109,6 @@ export default {
         }, 2000);
         return;
       } else if (!isEmail && !isPhone) {
-        console.log("enter ext", isPhone, isEmail);
         this.inValidEmailId = true;
         setTimeout(() => {
           this.inValidEmailId = false;
@@ -130,7 +128,7 @@ export default {
           this.invalidEmailText = "Please enter a valid phone number";
         }
         return;
-      } else if (isPhone && this.userNameOrEmail.length != 10) {
+      } else if (isPhone && this.userNameOrEmail.length == 0) {
         this.inValidEmailId = true;
         setTimeout(() => {
           this.inValidEmailId = false;
@@ -163,12 +161,11 @@ export default {
           .then((response) => response.text())
           .then((result) => {
             const data = JSON.parse(result);
-            console.log("type", typeof data.isVerified, data);
+
             if (data.done === true) {
               if (data.isVerified == "1") {
                 this.$router.push("/details");
               } else {
-                console.log(data, "data");
                 this.$router.push({
                   path: "/verify",
                   params: { email: "saivarshatedla@gmail.com" },

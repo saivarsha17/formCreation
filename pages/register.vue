@@ -145,14 +145,13 @@ export default {
       const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
       const isEmail = emailRegex.test(this.email);
-      console.log("ismeial", isEmail);
 
       if (
         this.firstName.length == 0 ||
         this.lastName.length == 0 ||
         this.email.length == 0 ||
         this.code.length != 2 ||
-        this.number.length != 10 ||
+        this.number.length != 0 ||
         this.password.length == 0 ||
         !isEmail
       ) {
@@ -184,7 +183,7 @@ export default {
             this.inValidpasswordModal = false;
           }, 2000);
         }
-        if (this.number.length != 10) {
+        if (this.number.length == 0) {
           this.inValidnumberModal = true;
           this.invalidnumber = "Please enter a valid mobile number";
           setTimeout(() => {
